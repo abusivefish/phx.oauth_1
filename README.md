@@ -1,2 +1,2 @@
-# oauth_1_basic
+# oauth_1
 simple Oauth authenitcation, and basic topic addition
