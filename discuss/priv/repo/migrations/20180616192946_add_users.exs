@@ -1,0 +1,18 @@
+defmodule Discuss.Repo.Migrations.AddUsers do
+  use Ecto.Migration
+
+  def change do
+    create table(:users) do
+      add :email, :string
+      add :password_hash, :string
+      add :provider, :string
+      add :token, :string
+      add :is_admin, :boolean, default: false, null: false
+
+      timestamps()
+    end
+
+    create unique_index(:users, [:email])
+  end
+end
+
