@@ -2,15 +2,15 @@ defmodule Discuss.AuthController do
   use Discuss.Web, :controller
   plug Ueberauth
 
-  alias Discuss.Users
+  alias Discuss.User
 
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     user_params = %{token: auth.credentials.token, email: auth.info.email, provider: "github" }
-    changeset = Users.changeset(%Users{} , user_params)
+    changeset = User.changeset(%User{} , user_params)
     insert_or_update_user(changeset)
-    
+
     oauthsignin(conn, changeset)
-  end 
+  end
 
   defp oauthsignin(conn, changeset) do
     case insert_or_update_user(changeset) do
@@ -27,7 +27,7 @@ defmodule Discuss.AuthController do
   end
 
   defp insert_or_update_user(changeset) do
-    case Repo.get_by(Users, email: changeset.changes.email) do
+    case Repo.get_by(User, email: changeset.changes.email) do
       nil ->
         Repo.insert(changeset)
       user ->
@@ -40,12 +40,7 @@ defmodule Discuss.AuthController do
     |> configure_session(drop: true)
     |> redirect(to: topic_path(conn, :index))
     |> put_flash(:info, "Logged Out")
-    
+
   end
 
 end
-
-
-
-
-

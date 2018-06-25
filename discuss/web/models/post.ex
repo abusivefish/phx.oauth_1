@@ -4,7 +4,7 @@ defmodule Discuss.Post do
   schema "posts" do
     field :title, :string
     field :body, :string
-    belongs_to :users, Discuss.Users, foreign_key: :users_id
+    belongs_to :user, Discuss.User
 
     timestamps()
   end

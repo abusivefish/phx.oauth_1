@@ -25,8 +25,8 @@ defmodule Discuss.Router do
   # post "/topics", TopicController, :create
   # get "/topics/:id/edit", TopicController, :edit
   # put "/topics/:id", TopicController, :update
-
-### to shorthand all requests to root or "/" to a specific controller, you can use the syntax below ###
+  # get "/topics/:id", TopicController, :show
+### you can shorthand all the above (only the above) to your scope to a specific controller using the syntax below ###
 
     resources "/", TopicController
   end

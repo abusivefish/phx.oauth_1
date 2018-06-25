@@ -5,6 +5,14 @@
 # is restricted to this project.
 use Mix.Config
 
+config :discuss, Discuss.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "discuss_repo",
+  username: "user",
+  password: "pass",
+  hostname: "localhost"
+
+
 # General application configuration
 config :discuss,
   ecto_repos: [Discuss.Repo]
